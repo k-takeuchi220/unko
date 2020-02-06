@@ -1,0 +1,79 @@
+<style>
+.unko{
+    height:60px;
+    width:100px;
+    margin-top:30px;
+    position:absolute;
+}
+.unko .stage_top{
+    height:35%;
+    width:25%;
+    display:block;
+    margin: 0 auto; 
+    transform: rotate(-110deg);
+    margin-bottom:-20%;
+    position:relative;
+    top:-11px;
+}
+.unko .stage_top .top{
+    height:100%;
+    width:100%;
+    background-color:brown;
+    border-radius: 50% 50% 0 50%;
+    display:inline-block;
+}
+.unko div[class^='stage_']:not(.stage_top){
+    height:30%;
+    display:block;  
+    margin: 0 auto;  
+    position:relative;
+}
+.unko .stage_1{
+    width:40%;
+}
+.unko .stage_2{
+    width:60%;
+}
+.unko .stage_3{
+    width:80%;
+}
+.unko div[class^='stage_'] .main-contents{
+    height:182%;
+    width:100%;
+    display:block;  
+    margin: 0 auto;
+    background-color:brown;
+    top:-7px;
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    z-index:2;
+}
+</style>
+
+<div class="unko"></div>
+<script>
+    const stage = 3;
+    var unkos = [].slice.call(document.getElementsByClassName('unko'));
+    unkos.forEach( function(unko) {
+        var stage_top = document.createElement('div');
+        stage_top.className = 'stage_top';
+
+        var top = document.createElement('div');
+        top.className = 'top';
+        stage_top.appendChild(top);
+        unko.appendChild(stage_top);
+        
+        for (var i=1; stage >= i; i++ ){
+            var parent = document.createElement('div');
+            parent.className = 'stage_'+i;
+
+            var parent_bk = document.createElement('div');
+            parent_bk.className = 'main-contents';
+
+            parent.appendChild(parent_bk);
+
+            unko.appendChild(parent);
+        }
+    });
+</script>
